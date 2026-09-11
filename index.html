@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>North Kyushu Roadbook · 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1EAD8; --bg-alt:#E7DEC5; --card:#FBF8EF; --ink:#2A241E;
+    --ink-soft:#5B5347; --forest:#1F3A2E; --forest-deep:#132720;
+    --rust:#B5502E; --gold:#A67F1E; --line:rgba(42,36,30,0.16);
+    --shadow: 0 1px 0 rgba(42,36,30,0.06);
+    --font-display:'Shippori Mincho', serif;
+    --font-body:'Zen Kaku Gothic New', sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#141F19; --bg-alt:#1B2921; --card:#1E2C24; --ink:#EAE3D3;
+      --ink-soft:#B9B0A0; --forest:#7FAE96; --forest-deep:#9FC7B0;
+      --rust:#E08C63; --gold:#D9B95C; --line:rgba(234,227,211,0.14);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#141F19; --bg-alt:#1B2921; --card:#1E2C24; --ink:#EAE3D3;
+    --ink-soft:#B9B0A0; --forest:#7FAE96; --forest-deep:#9FC7B0;
+    --rust:#E08C63; --gold:#D9B95C; --line:rgba(234,227,211,0.14);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--font-body);
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
+
+  .hero{
+    position:relative; min-height:92vh; display:flex; flex-direction:column;
+    justify-content:flex-end; overflow:hidden;
+    background:url('images/hero.jpg') center/cover no-repeat,
+      linear-gradient(155deg, var(--forest-deep), var(--forest) 60%, var(--gold) 140%);
+  }
+  html[data-theme="dark"] .hero, :root[data-theme="dark"] .hero{
+    background:url('images/hero.jpg') center/cover no-repeat,
+      linear-gradient(155deg, #0E1712, #16281F 60%, #2A3C2C 140%);
+  }
+  .hero-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(19,39,32,0.15) 0%, rgba(15,25,20,0.55) 60%, rgba(12,19,15,0.88) 100%);
+  }
+  .hero-inner{ position:relative; padding:0 24px 48px; max-width:900px; }
+  .eyebrow{
+    font-family:var(--font-body); font-weight:700; font-size:13px;
+    color:#E8C77A; letter-spacing:0.14em; margin:0 0 22px;
+  }
+  h1.title{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(48px, 9vw, 104px);
+    line-height:1.04; margin:0 0 24px; color:#FBF8EF;
+    max-width:16ch; letter-spacing:-0.01em;
+  }
+  .lede{ font-size:19px; color:rgba(251,248,239,0.82); max-width:44ch; margin:0; }
+  .hero-stats{
+    position:relative; display:flex; flex-wrap:wrap; gap:0;
+    border-top:1px solid rgba(251,248,239,0.18);
+  }
+  .hero-stats .stat{
+    flex:1 1 140px; padding:22px 24px; border-right:1px solid rgba(251,248,239,0.18);
+  }
+  .hero-stats .stat:last-child{ border-right:none; }
+  .hero-stats .stat b{ display:block; font-family:var(--font-display); font-size:40px; color:#FBF8EF; line-height:1; margin-bottom:6px;}
+  .hero-stats .stat span{ font-size:12px; color:rgba(251,248,239,0.65); letter-spacing:0.04em; text-transform:uppercase;}
+
+  .statement{
+    background:var(--bg-alt); padding:80px 24px; text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  .statement p{
+    font-family:var(--font-display); font-size:clamp(28px, 4.5vw, 46px);
+    color:var(--forest-deep); margin:0; max-width:18ch; margin:0 auto; line-height:1.25;
+  }
+  .statement em{ font-style:italic; color:var(--rust); }
+
+  section{ padding:64px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  h2.section-title{
+    font-family:var(--font-display); font-size:32px; font-weight:600;
+    color:var(--forest-deep); margin:0 0 6px;
+  }
+  .section-sub{ color:var(--ink-soft); font-size:14.5px; margin:0 0 28px; max-width:52ch; }
+
+  /* route strip */
+  .route-strip{ display:flex; flex-direction:column; gap:0; border:1px solid var(--line); border-radius:2px; overflow:hidden;}
+  .route-row{
+    display:grid; grid-template-columns:34px 1fr auto; gap:14px; align-items:baseline;
+    padding:14px 16px; border-bottom:1px solid var(--line); background:var(--card);
+  }
+  .route-row:last-child{ border-bottom:none; }
+  .route-num{ font-family:var(--font-display); color:var(--gold); font-size:15px; }
+  .route-name{ font-weight:700; font-size:15.5px; }
+  .route-dates{ color:var(--ink-soft); font-size:13px; }
+  .route-nights{ font-size:13px; color:var(--forest); font-weight:700; white-space:nowrap; }
+
+  /* days */
+  .day{
+    border:1px solid var(--line); border-radius:3px; margin-bottom:22px; background:var(--card);
+    overflow:hidden;
+  }
+  .day summary{
+    list-style:none; cursor:pointer; display:block; position:relative;
+  }
+  .day summary::-webkit-details-marker{ display:none; }
+  .day-banner{ position:relative; width:100%; height:clamp(200px, 32vw, 340px); overflow:hidden; background:var(--bg-alt); }
+  .day-banner img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .day-banner-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(19,39,32,0) 45%, rgba(15,25,20,0.78) 100%);
+  }
+  .day-num{
+    position:absolute; top:18px; left:20px; font-family:var(--font-display);
+    font-size:15px; color:#FBF8EF; background:rgba(19,39,32,0.55); padding:5px 12px;
+    border-radius:20px; letter-spacing:0.04em;
+  }
+  .day-caption{ position:absolute; left:20px; right:20px; bottom:16px; color:#FBF8EF; }
+  .day-caption .day-date{ font-family:var(--font-body); font-size:11.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#E8C77A; margin:0 0 6px;}
+  .day-caption h3{ font-family:var(--font-display); font-size:clamp(22px,3vw,30px); margin:0; font-weight:600; line-height:1.15;}
+  .day-meta-row{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 20px; }
+  .day-head p{ margin:0; font-size:14px; color:var(--ink-soft); max-width:60ch; }
+  .chev{ transition:transform .18s ease; color:var(--ink-soft); font-size:15px; flex-shrink:0; }
+  .day[open] .chev{ transform:rotate(90deg); }
+  .day-body{ padding:0 20px 24px; border-top:1px solid var(--line); }
+  .day-body-inner{ padding-top:18px; display:grid; gap:14px; }
+  .tag{
+    display:inline-block; font-size:11.5px; font-weight:700; padding:3px 9px;
+    border-radius:20px; background:var(--bg-alt); color:var(--forest); margin-right:6px;
+  }
+  .tag.rust{ background:rgba(181,80,46,0.14); color:var(--rust); }
+  .tag.gold{ background:rgba(166,127,30,0.16); color:var(--gold); }
+  .field-label{ font-size:11.5px; font-weight:700; color:var(--ink-soft); letter-spacing:0.02em; margin:0 0 4px;}
+  .field-value{ font-size:14.5px; margin:0; }
+  .note{
+    font-size:13.5px; background:var(--bg-alt); border-left:3px solid var(--gold);
+    padding:10px 12px; border-radius:0 2px 2px 0; color:var(--ink-soft);
+  }
+  .note.flag{ border-left-color:var(--rust); }
+  .note.flag b{ color:var(--rust); }
+
+  /* stays */
+  .stay-grid{ display:grid; gap:10px; }
+  .stay{
+    display:grid; grid-template-columns:76px 1fr; gap:16px; padding:16px; border:1px solid var(--line);
+    border-radius:2px; background:var(--card);
+  }
+  .stay-meta{ font-size:12.5px; color:var(--ink-soft); }
+  .stay-meta b{ display:block; font-family:var(--font-display); font-size:18px; color:var(--forest-deep); }
+  .stay-name{ font-weight:700; font-size:15px; margin:0 0 3px; }
+  .stay-detail{ font-size:13.5px; color:var(--ink-soft); margin:0 0 6px;}
+  .status{ font-size:11.5px; font-weight:700; }
+  .status.confirmed{ color:var(--forest); }
+  .status.shortlist{ color:var(--ink-soft); }
+
+  /* food thread */
+  .food-list{ display:grid; gap:0; }
+  .food-item{ display:grid; grid-template-columns:100px 1fr; gap:16px; padding:14px 0; border-bottom:1px solid var(--line); }
+  .food-item:last-child{ border-bottom:none; }
+  .food-place{ font-family:var(--font-display); font-size:14.5px; color:var(--forest-deep); }
+  .food-dish{ font-size:13.5px; color:var(--ink-soft); }
+
+  /* driving notes */
+  .drive-grid{ display:grid; gap:14px; grid-template-columns:1fr 1fr; }
+  @media (max-width:600px){ .drive-grid{ grid-template-columns:1fr; } }
+  .drive-item h4{ margin:0 0 4px; font-size:14px; }
+  .drive-item p{ margin:0; font-size:13px; color:var(--ink-soft); }
+
+  /* planner */
+  .planner-field{ margin-bottom:16px; }
+  .planner-field label{ display:block; font-size:12px; font-weight:700; color:var(--ink-soft); margin-bottom:6px; letter-spacing:0.02em;}
+  .planner-field textarea{
+    width:100%; min-height:64px; font-family:var(--font-body); font-size:14px; color:var(--ink);
+    background:var(--card); border:1px solid var(--line); border-radius:2px; padding:10px 12px; resize:vertical;
+  }
+  .planner-field textarea:focus{ outline:2px solid var(--gold); outline-offset:1px; }
+  .sync-note{ font-size:12px; color:var(--ink-soft); display:flex; align-items:center; gap:6px; margin-top:-4px; margin-bottom:18px;}
+  .dot{ width:6px; height:6px; border-radius:50%; background:var(--forest); display:inline-block; }
+  .dot.off{ background:var(--ink-soft); opacity:.5; }
+
+  /* decision tracker */
+  .decisions{ display:grid; gap:8px; }
+  .decision{ display:grid; grid-template-columns:100px 1fr; gap:14px; padding:10px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .decision:last-child{ border-bottom:none; }
+  .decision .k{ font-size:11px; font-weight:700; letter-spacing:0.02em; padding-top:2px;}
+  .k.done{ color:var(--forest); }
+  .k.open{ color:var(--rust); }
+
+  footer{ padding:36px 0 60px; text-align:center; font-size:12.5px; color:var(--ink-soft); }
+
+  /* schematic map */
+  .map-wrap{ border:1px solid var(--line); border-radius:2px; background:var(--card); padding:18px 10px 8px; margin-bottom:20px; }
+  .map-wrap svg{ width:100%; height:auto; display:block; }
+  .map-node text{ font-family:var(--font-body); font-weight:700; font-size:11.5px; fill:var(--ink); }
+  .map-node .n{ font-family:var(--font-display); font-size:10px; fill:var(--gold); }
+  .map-path{ fill:none; stroke:var(--rust); stroke-width:1.6; stroke-dasharray:3 4; }
+  .map-ferry{ stroke-dasharray:1 5; stroke-width:2; }
+  .map-dot{ fill:var(--forest); stroke:var(--card); stroke-width:3; }
+
+  /* maps link */
+  .maps-link{
+    display:inline-flex; align-items:center; gap:5px; font-size:12.5px; font-weight:700;
+    color:var(--forest); text-decoration:none; border:1px solid var(--line); border-radius:20px;
+    padding:5px 12px; width:fit-content;
+  }
+  .maps-link:hover{ border-color:var(--forest); }
+  .maps-link svg{ width:12px; height:12px; stroke:var(--forest); fill:none; stroke-width:2; }
+
+  .day-photo{
+    width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:2px;
+    background:var(--bg-alt); display:block;
+  }
+  .photo-caption{ font-size:11.5px; color:var(--ink-soft); margin:5px 0 0; }
+  .map-embed{ width:100%; height:220px; border:0; border-radius:2px; margin-top:4px; }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <p class="eyebrow">23 NOV — 5 DEC 2026 · 12 NIGHTS</p>
+      <h1 class="title">A slower road<br>through Kyushu</h1>
+      <p class="lede">Six bases, three fishing coasts, and a mountain crossing by ferry — the North Kyushu self-drive, kept unhurried.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b>6</b><span>bases</span></div>
+      <div class="stat"><b>12</b><span>nights</span></div>
+      <div class="stat"><b>1</b><span>car ferry</span></div>
+      <div class="stat"><b>3</b><span>seafood coasts</span></div>
+    </div>
+  </header>
+
+  <div class="statement">
+    <p>Travel well, <em>not just far.</em></p>
+  </div>
+
+<div class="wrap">
+
+  <section id="route">
+    <h2 class="section-title">The six-base route</h2>
+    <p class="section-sub">Locked structure — not to change without saying so explicitly.</p>
+    <div class="map-wrap"><img src="images/00-route-overview.jpg" alt="Route overview map" style="width:100%;border-radius:2px;display:block;"
+      onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='block';">
+      <p class="photo-caption" style="display:none;">images/00-route-overview.jpg — save your Google Maps screenshot with this filename</p>
+    </div>
+    <div class="route-strip" id="route-strip"></div>
+  </section>
+
+  <section id="days">
+    <h2 class="section-title">Day by day</h2>
+    <p class="section-sub">Open a day for stops, food, and the reasoning behind anything that changed in review.</p>
+    <div id="days-list"></div>
+  </section>
+
+  <section id="food">
+    <h2 class="section-title">The seafood thread</h2>
+    <p class="section-sub">Each coast has one job, so the food never repeats itself.</p>
+    <div class="food-list" id="food-list"></div>
+  </section>
+
+  <section id="stays">
+    <h2 class="section-title">Stay strategy</h2>
+    <p class="section-sub">Names stay open until room type, bath, and menu are verified — except where marked confirmed.</p>
+    <div class="stay-grid" id="stay-grid"></div>
+  </section>
+
+  <section id="driving">
+    <h2 class="section-title">Behind the wheel</h2>
+    <div class="drive-grid" id="drive-grid"></div>
+  </section>
+
+  <section id="planner">
+    <h2 class="section-title">Shared planner</h2>
+    <p class="section-sub">One plan, two travellers — edits here are saved to this page and sync for anyone with the link, not just this browser.</p>
+    <p class="sync-note" id="sync-status"><span class="dot off" id="sync-dot"></span><span id="sync-text">Checking sync…</span></p>
+    <div class="planner-field">
+      <label for="f-flights">Flights</label>
+      <textarea id="f-flights" data-key="flights"></textarea>
+    </div>
+    <div class="planner-field">
+      <label for="f-car">Rental car</label>
+      <textarea id="f-car" data-key="rentalCar"></textarea>
+    </div>
+    <div class="planner-field">
+      <label for="f-notes">Booking notes</label>
+      <textarea id="f-notes" data-key="bookingNotes"></textarea>
+    </div>
+  </section>
+
+  <section id="decisions">
+    <h2 class="section-title">Where things stand</h2>
+    <div class="decisions" id="decisions-list"></div>
+  </section>
+
+  <footer>North Kyushu Roadbook · 2026 — locked route, open details</footer>
+</div>
+
+<script>
+const ROUTE = [
+  {n:"01", name:"Fukuoka (Hakata)", dates:"23–24 Nov", nights:"2N", x:110, y:55, ferryAfter:false},
+  {n:"02", name:"Karatsu", dates:"25–26 Nov", nights:"2N", x:45, y:120, ferryAfter:false},
+  {n:"03", name:"Ureshino Onsen", dates:"27–29 Nov", nights:"3N", x:150, y:190, ferryAfter:false},
+  {n:"04", name:"Unzen Onsen", dates:"30 Nov", nights:"1N", x:245, y:235, ferryAfter:true},
+  {n:"05", name:"Kurokawa Onsen", dates:"1–3 Dec", nights:"3N", x:450, y:165, ferryAfter:false},
+  {n:"06", name:"Beppu", dates:"4 Dec", nights:"1N", x:610, y:95, ferryAfter:false},
+];
+
+const DAYS = [
+  {date:"MON 23", tag:"Fukuoka · 1/2", title:"Arrive softly", blurb:"Land, settle in Hakata, keep the evening easy.", img:"01-hakata.jpg", icon:"plane", map:"Tosu Premium Outlets",
+   stops:["Fukuoka Airport → Hakata by subway or taxi","Hotel check-in, Hakata","Bus to Tosu Premium Outlets — Tenjin Highway Bus Terminal, ~50 min","Shoe-brand run: Nike, Adidas, New Balance, Asics, Onitsuka Tiger","Bus back to Hakata/Tenjin","Easy seafood dinner nearby"],
+   eat:"Goma-saba, mentaiko, local sashimi.",
+   notes:[
+     {t:"note", c:"Car stays uncollected today — picking it up now only adds parking and fatigue for no benefit. Tosu is reached by direct bus instead, so this doesn't touch the rental days at all."},
+     {t:"flag", c:"<b>Added in review:</b> Tosu Premium Outlets slotted into the arrival afternoon specifically for shoe bargains — it doesn't sit on the drive route later, so this is the one clean window for it. Worth knowing it's a few hours off a long-haul flight; skip it here if jetlag wins and it costs a stop on 25 Nov instead."}
+   ]},
+
+  {date:"TUE 24", tag:"Fukuoka · 2/2", title:"Market, then Dazaifu", blurb:"A market morning, then a shrine afternoon instead of an aquarium.", img:"02-dazaifu-tenmangu.jpg", icon:"torii", map:"Dazaifu Tenmangu",
+   stops:["Nagahama Fish Market / Uoza","Dazaifu Tenmangu (~30 min out)","Approach-street food on the way back"],
+   eat:"Fresh market fish; umegae-mochi at Dazaifu.",
+   notes:[{t:"flag", c:"<b>Changed in review:</b> swapped out Marine World Uminonakamichi — a family aquarium didn't fit the food/culture/photography brief. Dazaifu gives a real shrine, a quieter Tuesday, and a walkable food street."}]},
+
+  {date:"WED 25", tag:"Karatsu · 1/2", title:"Coast to Karatsu", blurb:"Collect the car, follow the Itoshima coast, arrive by evening.", img:"03-keya-no-oto.jpg", icon:"wave", map:"Keya no Oto, Itoshima",
+   stops:["Collect rental car, Fukuoka","Keya no Oto sea cliffs, Itoshima","Fishing-port oyster hut, Itoshima","Continue to Karatsu"],
+   eat:"Self-grilled oysters and shellfish at the port.",
+   notes:[{t:"flag", c:"<b>Changed in review:</b> Ichiran no Mori (ramen theme park) swapped for Keya no Oto's cliffs — closer to the trip's photography-and-scenery register than a manufactured attraction."}]},
+
+  {date:"THU 26", tag:"Karatsu · 2/2", title:"Yobuko squid day", blurb:"An unhurried morning at the harbour, not a photo-stop pace.", img:"04-yobuko-market.jpg", icon:"fish", map:"Yobuko Morning Market",
+   stops:["Yobuko Morning Market","Yobuko harbour","Karatsu Castle or pottery — optional, time permitting"],
+   eat:"Ika no ikizukuri (live squid) — the reason for the day."},
+
+  {date:"FRI 27", tag:"Ureshino · 1/3", title:"Porcelain to Ariake crab", blurb:"Saga's pottery country, then a dedicated seafood afternoon.", img:"05-okawachiyama.jpg", icon:"wave", map:"Okawachiyama, Imari",
+   stops:["Imari","Okawachiyama pottery village","Tara / Ariake coast","Arrive Ureshino"],
+   eat:"Takezaki crab and oysters, Tara."},
+
+  {date:"SAT 28", tag:"Ureshino · 2/3", title:"Nagasaki: heritage & food", blurb:"A complete day in Nagasaki, minus the Atomic Bomb Museum this trip.", img:"06-glover-garden.jpg", icon:"lantern", map:"Glover Garden, Nagasaki",
+   stops:["Glover Garden","Dejima","Chinatown — lunch","Mt Inasa at dusk"],
+   eat:"Champon, sara udon, chawanmushi.",
+   notes:[{t:"note", c:"<b>Provisional shape.</b> Five stops (incl. the Atomic Bomb Museum) was too much for one day against the trip's relaxed pace. This heritage-and-food version is the working default — say the word if the museum matters enough to swap in the Peace & port version instead."}]},
+
+  {date:"SUN 29", tag:"Ureshino · 3/3", title:"The exhale day", blurb:"Deliberately light: tea, bathing, craft, ryokan time.", img:"07-ureshino-onsen.jpg", icon:"onsen", map:"Ureshino Onsen",
+   stops:["Ureshino tea","Onsen yudofu","Private bathing at the ryokan","Takeo or Arita — optional"],
+   eat:"Onsen yudofu."},
+
+  {date:"MON 30", tag:"Unzen · 1 night", title:"Shimabara, then the peninsula", blurb:"Castle and samurai district now sit here, ahead of the pass.", img:"08-shimabara-castle.jpg", icon:"castle", map:"Shimabara Castle",
+   stops:["Shimabara Castle","Shimabara samurai district","Nita Pass (before dusk, weather permitting)","Unzen Jigoku","Arrive Unzen — half-board ryokan"],
+   eat:"Seafood-led ryokan kaiseki.",
+   notes:[
+     {t:"flag", c:"<b>Changed in review:</b> Shimabara Castle and the samurai district moved here from 1 Dec, which was overloaded once ferry and Aso transfer were added in. This day absorbs them with room to spare."},
+     {t:"flag", c:"<b>Nita Pass is weather- and season-gated</b> — the loop road typically closes for winter around this time. If it's closed, skip it rather than substituting another stop: arrive Unzen earlier and take the extra time at the ryokan instead."}
+   ]},
+
+  {date:"TUE 1", tag:"Kurokawa · 1/3", title:"Straight to the mountains", blurb:"Ferry, then a direct run to Kurokawa — no stops added.", img:"09-shimabara-ferry.jpg", icon:"ferry", map:"Shimabara Port",
+   stops:["Shimabara Port","Car ferry to Kumamoto Port (queue 30 min early)","Direct drive to Kurokawa Onsen"],
+   eat:"Ryokan dinner on arrival.",
+   notes:[{t:"note", c:"Simplified in review — this used to also carry the Aso viewpoints. With Shimabara moved to 30 Nov, this day is just the crossing and the drive, arriving with time to spare before dinner."}]},
+
+  {date:"WED 2", tag:"Kurokawa · 2/3", title:"Inside the Aso caldera", blurb:"Daikanbo's view, then Kusasenri's grassland.", img:"10-aso-daikanbo.jpg", icon:"mountain", map:"Daikanbo, Aso",
+   stops:["Daikanbo viewpoint","Kusasenri","Mt Aso volcanic access — optional, check nearer the date"],
+   eat:"Akaushi beef — a change from seafood."},
+
+  {date:"THU 3", tag:"Kurokawa · 3/3", title:"Takachiho's gorge", blurb:"Manai Falls and the shrine, back to the same ryokan.", img:"11-takachiho-gorge.jpg", icon:"falls", map:"Takachiho Gorge",
+   stops:["Takachiho Gorge","Manai Falls","Takachiho Shrine","Return to Kurokawa"],
+   eat:"Kurokawa ryokan kaiseki.",
+   notes:[{t:"flag", c:"<b>Action item, not just a check:</b> the gorge's rowboat can only be reserved online from exactly two weeks before the date, 9:00am JST — for 3 Dec that's roughly 19 Nov. Same-day tickets sell out early. Book that morning; don't leave it for the road."}]},
+
+  {date:"FRI 4", tag:"Beppu · 1 night", title:"The Yamanami finale", blurb:"One grand drive over the highlands, then an early night ahead of tomorrow's early start.", img:"12-kokonoe-yume-bridge.jpg", icon:"mountain", map:"Kokonoe Yume Otsurihashi",
+   stops:["Yamanami Highway","Kokonoe Yume Suspension Bridge","Arrive Beppu with real evening time to spare"],
+   eat:"Celebratory seafood-oriented resort buffet — tonight, not tomorrow morning.",
+   notes:[{t:"flag", c:"<b>Trimmed in review:</b> Yufuin dropped — it's another onsen town, and this trip already has four (Ureshino, Unzen, Kurokawa, Beppu itself). Kokonoe stays; it's the one genuinely different stop on this day. This also protects an early Beppu arrival and early bedtime, needed for tomorrow's pre-dawn departure."}]},
+
+  {date:"SAT 5", tag:"Fly home", title:"Beppu to Singapore", blurb:"Drive, refuel, return the car, fly out.", img:"13-fukuoka-airport.jpg", icon:"plane", map:"Fukuoka Airport",
+   stops:["Drive to Fukuoka Airport","Refuel","Return rental car — generous buffer","SQ nonstop to Singapore"],
+   eat:"—",
+   notes:[
+     {t:"note", c:"<b>Confirmed:</b> SQ nonstop, full fare — no ID50 standby risk on this leg."},
+     {t:"flag", c:"<b>Early start, not a leisurely morning:</b> SQ655 departs Fukuoka ~09:58am (confirm on your ticket). Beppu-airport is a 2hr drive, so with check-in buffer and the car return, plan to leave Beppu by 5:30-6:00am — no ryokan breakfast, no morning onsen. Grab something quick (konbini coffee, onigiri) on the way."}
+   ]},
+];
+
+const FOOD = [
+  {place:"Market fish", loc:"Nagahama · Fukuoka", dish:"Sashimi, goma-saba, grilled catch"},
+  {place:"Oyster huts", loc:"Itoshima · fishing ports", dish:"Self-grilled oysters and shellfish"},
+  {place:"Live squid", loc:"Yobuko · Saga", dish:"Ika no ikizukuri by the harbour"},
+  {place:"Takezaki crab", loc:"Tara · Ariake Sea", dish:"A specialist crab lunch"},
+  {place:"Port-city food", loc:"Nagasaki", dish:"Champon, sara udon, chawanmushi"},
+  {place:"Finale buffet", loc:"Beppu · onsen resort", dish:"Sushi, robatayaki, seasonal seafood"},
+];
+
+const STAYS = [
+  {base:"Fukuoka", nights:"2N", name:"Hotel to confirm", detail:"Hakata district — confirmed. Property still to be sourced.", status:"shortlist"},
+  {base:"Karatsu", nights:"2N", name:"Karatsu Seaside Hotel · East Wing", detail:"Sea-view natural onsen, rooftop thermal bath.", status:"shortlist"},
+  {base:"Ureshino", nights:"3N", name:"Taishoya Shiibasanso", detail:"Riverside ryokan — ask for private bath, confirm renpaku menu variation.", status:"shortlist"},
+  {base:"Unzen", nights:"1N", name:"Unzen Miyazaki Ryokan", detail:"Sulfur onsen, seafood-led seasonal kaiseki.", status:"shortlist"},
+  {base:"Kurokawa", nights:"3N", name:"Yamamizuki", detail:"Confirmed. Confirm 3-night renpaku menu variation before booking.", status:"confirmed"},
+  {base:"Beppu", nights:"1N", name:"Suginoi Hotel · Hoshikan", detail:"Panoramic baths, HOSHI seafood buffet. For the early-departure morning: request a room with a private open-air bath — the shared Tanayu bath doesn't open until 6:00am, too late for a 5:30-6am departure.", status:"shortlist"},
+];
+
+const DRIVING = [
+  {h:"ETC card + full insurance", p:"Arrange before pickup; confirm excess coverage for mountain sections."},
+  {h:"Suitable tyres", p:"Late-November mountain conditions — confirm with the rental desk at pickup."},
+  {h:"Short daylight", p:"Sunset is roughly 5:00–5:15pm in this window — finish mountain driving before dusk, not after."},
+  {h:"Ferry buffer", p:"Queue at least 30 minutes before sailing, Shimabara–Kumamoto."},
+  {h:"Fuel before rural legs", p:"Top up before Takachiho and Aso — small-town stations close early."},
+  {h:"One park in Nagasaki", p:"Leave the car centrally once, then tram or walk for the day."},
+];
+
+const DECISIONS = [
+  {k:"CONFIRMED", v:"Six-base structure and dates · Fukuoka in Hakata · Kurokawa at Yamamizuki · SQ nonstop, full fare, no ID50 · 1 Dec/30 Nov swap · Dazaifu in for Marine World · Keya no Oto in for Ichiran no Mori · Tosu Premium Outlets added 23 Nov arrival afternoon (shoe brands) · Yufuin dropped 4 Dec, Kokonoe kept"},
+  {k:"PROVISIONAL", v:"Nagasaki day as Heritage & food (museum-free) — flag if the Atomic Bomb Museum should be in this trip instead"},
+  {k:"STILL OPEN", v:"Fukuoka hotel property (Hakata confirmed, name not yet sourced) · Renpaku confirmation for Taishoya Shiibasanso and Yamamizuki · Nita Pass go/no-go closer to 30 Nov · Takachiho boat booking on ~19 Nov · Suginoi private open-air bath room availability, for the 5 Dec pre-departure dip"},
+];
+
+function el(tag, cls, html){ const e=document.createElement(tag); if(cls) e.className=cls; if(html!==undefined) e.innerHTML=html; return e; }
+
+const ICONS = {
+  plane: '<path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/>',
+  torii: '<path d="M3 8h18M5 8v13M19 8v13M2 5h20M7 5L6 2M17 5l1-3"/>',
+  wave: '<path d="M2 14c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 19c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/>',
+  fish: '<path d="M3 12s4-6 11-6 7 6 7 6-3 6-7 6-11-6-11-6z"/><path d="M21 12l2-3v6z"/><circle cx="15" cy="10.5" r="0.6" fill="currentColor" stroke="none"/>',
+  lantern: '<rect x="7" y="4" width="10" height="14" rx="2"/><path d="M9 4V2M15 4V2M9 20v2M15 20v2M7 9h10M7 13h10"/>',
+  onsen: '<path d="M4 20c3 0 3-3 6-3s3 3 6 3 3-3 6-3"/><path d="M9 3c1.2 1.8-1 2.8 0 4.6M15 3c1.2 1.8-1 2.8 0 4.6"/>',
+  castle: '<path d="M3 21V10l3-3v3h3V7l3-3 3 3v3h3V7l3 3v11z"/>',
+  ferry: '<path d="M2 18l2 3h16l2-3"/><path d="M4 18l1-8h14l1 8"/><path d="M12 2v8"/><path d="M12 3l5 3"/>',
+  mountain: '<path d="M3 20l6-12 4 7 3-5 5 10z"/>',
+  falls: '<path d="M6 3v5M12 3v9M18 3v5"/><path d="M4 21c1.5-3 1.5-6 2-10M10 21c1.5-5 1.5-9 2-14M16 21c1.5-3 1.5-6 2-10"/>',
+};
+
+// Route strip
+const routeStrip = document.getElementById('route-strip');
+ROUTE.forEach(r=>{
+  const row = el('div','route-row');
+  row.innerHTML = `<span class="route-num">${r.n}</span>
+    <span><span class="route-name">${r.name}</span><br><span class="route-dates">${r.dates}</span></span>
+    <span class="route-nights">${r.nights}</span>`;
+  routeStrip.appendChild(row);
+});
+
+// Days
+const daysList = document.getElementById('days-list');
+DAYS.forEach(d=>{
+  const details = el('details','day');
+  const summary = el('summary');
+  summary.innerHTML = `
+    <div class="day-banner">
+      <img src="images/${d.img || ''}" alt="${d.title}" loading="lazy"
+        onerror="this.onerror=null;this.style.display='none';">
+      <div class="day-banner-overlay"></div>
+      <span class="day-num">${d.tag}</span>
+      <div class="day-caption">
+        <p class="day-date">${d.date}</p>
+        <h3>${d.title}</h3>
+      </div>
+    </div>
+    <div class="day-meta-row">
+      <span class="day-head"><p>${d.blurb}</p></span>
+      <span class="chev">&#9656;</span>
+    </div>`;
+  details.appendChild(summary);
+
+  const body = el('div','day-body');
+  const inner = el('div','day-body-inner');
+
+  const stopsBlock = el('div');
+  stopsBlock.appendChild(el('p','field-label','STOPS IN ORDER'));
+  const ol = el('ol'); ol.style.margin='0'; ol.style.paddingLeft='18px'; ol.style.fontSize='14.5px';
+  d.stops.forEach(s=>{ const li=document.createElement('li'); li.textContent=s; li.style.marginBottom='3px'; ol.appendChild(li); });
+  stopsBlock.appendChild(ol);
+  inner.appendChild(stopsBlock);
+
+  const eatBlock = el('div');
+  eatBlock.appendChild(el('p','field-label','EAT THIS'));
+  eatBlock.appendChild(el('p','field-value', d.eat));
+  inner.appendChild(eatBlock);
+
+  if(d.notes){
+    d.notes.forEach(n=>{
+      inner.appendChild(el('div', 'note' + (n.t==='flag' ? ' flag' : ''), n.c));
+    });
+  }
+
+  if(d.map){
+    const mapBlock = document.createElement('div');
+    mapBlock.innerHTML = `<p class="field-label">MAP</p>
+      <iframe class="map-embed" loading="lazy"
+        src="https://www.google.com/maps?q=${encodeURIComponent(d.map)}&output=embed"></iframe>`;
+    inner.appendChild(mapBlock);
+  }
+
+  body.appendChild(inner);
+  details.appendChild(body);
+  daysList.appendChild(details);
+});
+
+// Food
+const foodList = document.getElementById('food-list');
+FOOD.forEach(f=>{
+  const row = el('div','food-item');
+  row.innerHTML = `<span><span class="food-place">${f.place}</span><br><span class="food-dish" style="font-size:12px;opacity:.8">${f.loc}</span></span><span class="food-dish">${f.dish}</span>`;
+  foodList.appendChild(row);
+});
+
+// Stays
+const stayGrid = document.getElementById('stay-grid');
+STAYS.forEach(s=>{
+  const row = el('div','stay');
+  row.innerHTML = `
+    <div class="stay-meta"><b>${s.nights}</b>${s.base}</div>
+    <div>
+      <p class="stay-name">${s.name}</p>
+      <p class="stay-detail">${s.detail}</p>
+      <span class="status ${s.status}">${s.status==='confirmed'?'✓ Confirmed':'Shortlist'}</span>
+    </div>`;
+  stayGrid.appendChild(row);
+});
+
+// Driving
+const driveGrid = document.getElementById('drive-grid');
+DRIVING.forEach(d=>{
+  const item = el('div','drive-item');
+  item.innerHTML = `<h4>${d.h}</h4><p>${d.p}</p>`;
+  driveGrid.appendChild(item);
+});
+
+// Decisions
+const decisionsList = document.getElementById('decisions-list');
+DECISIONS.forEach(d=>{
+  const row = el('div','decision');
+  const kClass = d.k==='CONFIRMED' ? 'done' : (d.k==='STILL OPEN' ? 'open' : '');
+  row.innerHTML = `<span class="k ${kClass}">${d.k}</span><span>${d.v}</span>`;
+  decisionsList.appendChild(row);
+});
+
+// ---- Shared planner (static export: per-device localStorage, same limit as the old site) ----
+(function(){
+  const dot = document.getElementById('sync-dot');
+  const text = document.getElementById('sync-text');
+  const fields = document.querySelectorAll('#planner textarea');
+  const STORE_KEY = 'kyushu-roadbook-planner';
+
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); } catch(e){ saved = {}; }
+  fields.forEach(f=>{ if(saved[f.dataset.key]) f.value = saved[f.dataset.key]; });
+
+  dot.classList.add('off');
+  text.textContent = 'Saved on this device only — this static export can\'t sync across devices.';
+
+  fields.forEach(f=>{
+    f.addEventListener('input', ()=>{
+      saved[f.dataset.key] = f.value;
+      try { localStorage.setItem(STORE_KEY, JSON.stringify(saved)); } catch(e){ /* storage unavailable */ }
+    });
+  });
+})();
+</script>
+</body>
+</html>
